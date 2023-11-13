@@ -44,5 +44,5 @@ u_int handle_address(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len);
+	return (len + 2);
 }
