@@ -9,4 +9,6 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_binary(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer);
 #endif
