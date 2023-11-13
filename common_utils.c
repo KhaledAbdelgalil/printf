@@ -11,6 +11,7 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_special_str(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_address(va_list args, GLOBALBUFFER *printBuffer);
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -43,7 +44,8 @@ outputFromGet_handleFunc_to_exec
 	{"%", handle_percentage}, {"d", handle_int}, {"i", handle_int},
 	{"b", handle_binary}, {"x", handle_hexaSmall},
 	{"X", handle_hexaCapital}, {"o", handle_oct},
-	{"u", handle_uint}, {"S", handle_special_str}, {NULL, NULL} };
+	{"u", handle_uint}, {"S", handle_special_str},
+	{"p", handle_address}, {NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 

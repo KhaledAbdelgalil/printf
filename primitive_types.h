@@ -3,4 +3,6 @@
 typedef unsigned int u_int;
 typedef unsigned char u_char;
 typedef const char c_char;
+typedef unsigned long int ul_int;
+typedef long int l_int;
 #endif
