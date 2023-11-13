@@ -3,7 +3,7 @@
 #include "primitive_types.h"
 #include <stdarg.h>
 #include <stddef.h>
-#define _BUFFER_SIZE_ 512
+#define _BUFFER_SIZE_ 1024
 /**
  * struct GLOBALBUFFER - struct for printf Buffer
  * used across program
