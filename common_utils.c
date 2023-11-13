@@ -6,6 +6,8 @@ u_int handle_percentage(va_list args, GLOBALBUFFER  *printBuffer);
 u_int handle_char(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_binary(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -36,7 +38,8 @@ outputFromGet_handleFunc_to_exec
 	SpecifierToFunc mapSpecifierToFuncPointer[] = {
 	{"c", handle_char}, {"s", handle_str},
 	{"%", handle_percentage}, {"d", handle_int}, {"i", handle_int},
-	{"b", handle_binary}, {NULL, NULL} };
+	{"b", handle_binary}, {"x", handle_hexaSmall},
+	{"X", handle_hexaCapital}, {NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 
