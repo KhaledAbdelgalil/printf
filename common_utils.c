@@ -17,7 +17,20 @@ u_int handle_space_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_oct_hashtag(va_list args, GLOBALBUFFER *printBuffer);
+<<<<<<< HEAD
 u_int handle_rev_str(va_list args, GLOBALBUFFER *printBuffer);
+=======
+u_int handle_long_int(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_int(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_uint(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_uint(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_oct(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_oct(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+>>>>>>> d57aab59802118005d8bf8a6757dc7cad4fa9e4f
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -48,6 +61,7 @@ outputFromGet_handleFunc_to_exec
 	SpecifierToFunc mapSpecifierToFuncPointer[] = {
 	{"c", handle_char}, {"s", handle_str}, {"%", handle_percentage},
 	{" %", handle_percentage}, {"d", handle_int}, {"i", handle_int},
+<<<<<<< HEAD
 	{"b", handle_binary}, {"x", handle_hexaSmall},
 	{"X", handle_hexaCapital}, {"o", handle_oct},
 	{"r", handle_rev_str},
@@ -55,6 +69,18 @@ outputFromGet_handleFunc_to_exec
 	{"p", handle_address}, {"+x", handle_hexaSmall},
 	{"+X", handle_hexaCapital}, {"+o", handle_oct},
 	{" X", handle_hexaCapital}, {" x", handle_hexaSmall},
+=======
+	{"li", handle_long_int}, {"ld", handle_long_int},
+	{"hx", handle_short_hexaSmall},
+	{"hi", handle_short_int}, {"hd", handle_short_int},
+	{"hX", handle_short_hexaCapital},
+	{"b", handle_binary}, {"x", handle_hexaSmall}, {"lx", handle_long_hexaSmall},
+	{"X", handle_hexaCapital}, {"o", handle_oct}, {"lX", handle_long_hexaCapital},
+	{"u", handle_uint}, {"lu", handle_long_uint}, {"S", handle_special_str},
+	{"p", handle_address}, {"+x", handle_hexaSmall}, {"hu", handle_short_uint},
+	{"+X", handle_hexaCapital}, {"+o", handle_oct}, {"ho", handle_short_oct},
+	{" X", handle_hexaCapital}, {" x", handle_hexaSmall}, {"lo", handle_long_oct},
+>>>>>>> d57aab59802118005d8bf8a6757dc7cad4fa9e4f
 	{" o", handle_oct}, {"+i", handle_plus_int}, {"+d", handle_plus_int},
 	{" i", handle_space_int}, {" d", handle_space_int},
 	{"#x", handle_hexaSmall_hashtag}, {"#X", handle_hexaCapital_hashtag},

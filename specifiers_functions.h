@@ -18,5 +18,17 @@ u_int handle_space_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_oct_hashtag(va_list args, GLOBALBUFFER *printBuffer);
+<<<<<<< HEAD
 u_int handle_rev_str(va_list args, GLOBALBUFFER *printBuffer);
+=======
+u_int handle_long_int(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_int(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_uint(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_uint(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_oct(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+>>>>>>> d57aab59802118005d8bf8a6757dc7cad4fa9e4f
 #endif
