@@ -9,12 +9,17 @@
  */
 u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 {
-	u_int num;
-	u_int absNum;
-	u_int powers = 1;
+	ul_int num;
+	ul_int absNum;
+	ul_int powers = 1;
 	u_int digits = 0;
 
-	num = va_arg(args, int);
+	if (printBuffer->params.l_modifier)
+		num = (ul_int)va_arg(args, ul_int);
+	else if (printBuffer->params.h_modifier)
+		num = (us_int)va_arg(args, u_int);
+	else
+		num = (u_int)va_arg(args, u_int);
 	absNum = num;
 
 	while (absNum > 9)

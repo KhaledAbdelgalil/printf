@@ -10,9 +10,9 @@
 u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 {
 	l_int num;
-	u_int absNum;
+	ul_int absNum;
 	u_char one = 0;
-	u_int powers = 1;
+	ul_int powers = 1;
 	u_int digits = 0;
 
 	if (printBuffer->params.l_modifier)
