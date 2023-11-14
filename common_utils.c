@@ -17,6 +17,7 @@ u_int handle_space_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_oct_hashtag(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_rev_str(va_list args, GLOBALBUFFER *printBuffer);
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -49,6 +50,7 @@ outputFromGet_handleFunc_to_exec
 	{" %", handle_percentage}, {"d", handle_int}, {"i", handle_int},
 	{"b", handle_binary}, {"x", handle_hexaSmall},
 	{"X", handle_hexaCapital}, {"o", handle_oct},
+	{"r", handle_rev_str},
 	{"u", handle_uint}, {"S", handle_special_str},
 	{"p", handle_address}, {"+x", handle_hexaSmall},
 	{"+X", handle_hexaCapital}, {"+o", handle_oct},
