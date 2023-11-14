@@ -9,12 +9,17 @@
  */
 u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 {
-	u_int num;
+	ul_int num;
 	u_char bits[128], one = 0;
 	int idx = 0;
 	u_int len = 0;
 
-	num = va_arg(args, int);
+	if (printBuffer->params.l_modifier)
+		num = (ul_int)va_arg(args, ul_int);
+	else if (printBuffer->params.h_modifier)
+		num = (us_int)va_arg(args, u_int);
+	else
+		num = (u_int)va_arg(args, u_int);
 	if (num == 0)
 	{
 		add_to_buffer('0', printBuffer);
