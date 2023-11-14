@@ -13,8 +13,6 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_special_str(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_address(va_list args, GLOBALBUFFER *printBuffer);
-u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer);
-u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_rev_str(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_int(va_list args, GLOBALBUFFER *printBuffer);

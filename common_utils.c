@@ -12,8 +12,6 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_special_str(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_address(va_list args, GLOBALBUFFER *printBuffer);
-u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer);
-u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_rev_str(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_int(va_list args, GLOBALBUFFER *printBuffer);
@@ -74,7 +72,6 @@ outputFromGet_handleFunc_to_exec
 	{"+X", handle_hexaCapital}, {"+o", handle_oct}, {"ho", handle_short_oct},
 	{" X", handle_hexaCapital}, {" x", handle_hexaSmall}, {"lo", handle_long_oct},
 	{"o", handle_oct},
-	{"#x", handle_hexaSmall_hashtag}, {"#X", handle_hexaCapital_hashtag},
 	{"#d", handle_int}, {"#i", handle_int},
 	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},
 	{"l", handle_percentage},
