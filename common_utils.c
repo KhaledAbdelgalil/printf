@@ -76,14 +76,15 @@ outputFromGet_handleFunc_to_exec
 	{"p", handle_address}, {"+x", handle_hexaSmall}, {"hu", handle_short_uint},
 	{"+X", handle_hexaCapital}, {"+o", handle_oct}, {"ho", handle_short_oct},
 	{" X", handle_hexaCapital}, {" x", handle_hexaSmall}, {"lo", handle_long_oct},
-	{"o", handle_oct},
+	{"o", handle_oct}, {"+i", handle_plus_int}, {"+d", handle_plus_int},
 	{" i", handle_space_int}, {" d", handle_space_int},
 	{"#x", handle_hexaSmall_hashtag}, {"#X", handle_hexaCapital_hashtag},
 	{"#d", handle_int}, {"#i", handle_int}, {"#o", handle_oct_hashtag},
 	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},
-	{"l", handle_percentage},
+	{" +i", handle_plus_int}, {" +d", handle_plus_int},
+	{"+ i", handle_plus_int}, {"+ d", handle_plus_int}, {"l", handle_percentage},
 	{"h", handle_percentage}, {"l ", handle_percentage},
-	{"h ", handle_percentage}, {NULL, NULL} };
+        {"h ", handle_percentage}, {NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 
