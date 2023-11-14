@@ -14,7 +14,7 @@ u_int handle_short_uint(va_list args, GLOBALBUFFER *printBuffer)
 	us_int powers = 1;
 	u_int digits = 0;
 
-	num = va_arg(args, us_int);
+	num = va_arg(args, u_int);
 	absNum = num;
 
 	while (absNum > 9)
