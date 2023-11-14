@@ -22,16 +22,16 @@ void getParams(printf_parms *params, c_char *format, u_int *idx)
 				still = params->plus_flag = 1;
 				break;
 			case ' ':
-				still = params->space_flag = 1;
+				still = params->space_flag = 0;
 				break;
 			case '#':
-				still = params->hashtag_flag = 1;
+				still = params->hashtag_flag = 0;
 				break;
 			case '-':
-				still = params->minus_flag = 1;
+				still = params->minus_flag = 0;
 				break;
 			case '0':
-				still = params->zero_flag = 1;
+				still = params->zero_flag = 0;
 				break;
 			default:
 				still = 0;
