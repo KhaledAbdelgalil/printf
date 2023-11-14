@@ -28,6 +28,7 @@ u_int handle_short_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
