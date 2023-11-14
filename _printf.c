@@ -43,51 +43,50 @@ void getParams(printf_parms *params, c_char *format, u_int *idx)
 }
 /**
  * _printf - print the input formatted string.
- * @formattedString: input string.
+ * @format: input string.
  *
  * Return: number of chars printed or error.
  */
-int _printf(c_char *formattedString, ...)
+int _printf(c_char *format, ...)
 {
-	u_int idx = 0, charsPrinted = 0;
+	u_int idx = 0, chars = 0, initialIdx = 0;
 	va_list args;
 	outputFromGet_handleFunc_to_exec o;
 	GLOBALBUFFER printBuffer;
 
-	va_start(args, formattedString);
-	printBuffer.buffer = malloc(sizeof(char) * _BUFFER_SIZE_);
+	va_start(args, format), printBuffer.buffer = malloc(_BUFFER_SIZE_);
 	printBuffer.nextIdx = 0;
-	if (error(formattedString) || !printBuffer.buffer)
+	if (error(format) || !printBuffer.buffer)
 		return (-1);
-	if (!formattedString[0])
+	if (!format[0])
 		return (0);
-	while (formattedString[idx])
+	while (format[idx])
 	{
-		if (formattedString[idx] == '%')
+		if (format[idx] == '%')
 		{
-			if (formattedString[idx + 1] == '\0' ||
-					(formattedString[idx + 1] == ' ' && !formattedString[idx + 2]))
+			if (format[idx + 1] == '\0' ||
+					(format[idx + 1] == ' ' && !format[idx + 2]))
 			{
 				print_buffer(&printBuffer), free(printBuffer.buffer), va_end(args);
 				return (-1);
 			}
 			else
 			{
-				getParams(&(printBuffer.params), formattedString, &idx);
-				o = get_handleFunc_to_exec(formattedString, idx + 1);
+				initialIdx = idx++, getParams(&(printBuffer.params), format, &idx);
+				o = get_handleFunc_to_exec(format, idx);
 				if (o.func != NULL)
 				{
-					charsPrinted += o.func(args, &printBuffer);
-					idx += o.idx + 1; /*skip specifier*/
+					chars += o.func(args, &printBuffer);
+					idx += o.idx; /*skip specifier*/
 				}
 				else
-					add_to_buffer(formattedString[idx], &printBuffer), charsPrinted++;
+					idx = initialIdx, add_to_buffer(format[idx], &printBuffer), chars++;
 			}
 		}
 		else
-			add_to_buffer(formattedString[idx], &printBuffer), charsPrinted++;
+			add_to_buffer(format[idx], &printBuffer), chars++;
 		idx++;
 	}
 	print_buffer(&printBuffer), free(printBuffer.buffer), va_end(args);
-	return (charsPrinted);
+	return (chars);
 }
