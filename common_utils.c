@@ -58,9 +58,9 @@ outputFromGet_handleFunc_to_exec
 	{"X", handle_hexaCapital}, {"o", handle_oct},
 	{"r", handle_rev_str},
 	{"u", handle_uint}, {"S", handle_special_str},
-	{"p", handle_address}, {"+x", handle_hexaSmall},
+	{"p", handle_address},
 	{"+X", handle_hexaCapital}, {"+o", handle_oct},
-	{" X", handle_hexaCapital}, {" x", handle_hexaSmall},
+	{" X", handle_hexaCapital},
 	{"li", handle_long_int}, {"ld", handle_long_int},
 	{"hx", handle_short_hexaSmall}, {" hx", handle_short_hexaSmall},
 	{"hi", handle_short_int}, {"hd", handle_short_int},
@@ -68,15 +68,13 @@ outputFromGet_handleFunc_to_exec
 	{"b", handle_binary}, {"x", handle_hexaSmall}, {"lx", handle_long_hexaSmall},
 	{"X", handle_hexaCapital}, {"o", handle_oct}, {"lX", handle_long_hexaCapital},
 	{"u", handle_uint}, {"lu", handle_long_uint}, {"S", handle_special_str},
-	{"p", handle_address}, {"+x", handle_hexaSmall}, {"hu", handle_short_uint},
-	{"+X", handle_hexaCapital}, {"+o", handle_oct}, {"ho", handle_short_oct},
-	{" X", handle_hexaCapital}, {" x", handle_hexaSmall}, {"lo", handle_long_oct},
+	{"p", handle_address}, {"hu", handle_short_uint},
+	{"ho", handle_short_oct},
+	{"lo", handle_long_oct},
 	{"o", handle_oct},
-	{"#d", handle_int}, {"#i", handle_int},
-	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},
 	{"l", handle_percentage},
 	{"h", handle_percentage}, {"l ", handle_percentage},
-        {"h ", handle_percentage}, {NULL, NULL} };
+	{"h ", handle_percentage}, {NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 
