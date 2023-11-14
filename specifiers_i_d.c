@@ -11,7 +11,7 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 {
 	int num;
 	u_int absNum;
-	u_char is_negative = 0;
+	u_char one = 0;
 	u_int powers = 1;
 	u_int digits = 0;
 
@@ -20,8 +20,15 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		num  = num * -1;
 		add_to_buffer('-', printBuffer);
-		is_negative = 1;
+		one = 1;
 	}
+	else
+	{
+		if (printBuffer->params.plus_flag)
+			add_to_buffer('+', printBuffer), one = 1;
+
+	}
+
 	absNum = num;
 
 	while (absNum > 9)
@@ -36,5 +43,5 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		powers = powers / 10;
 		digits++;
 	}
-	return (digits + is_negative);
+	return (digits + one);
 }

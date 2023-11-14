@@ -4,19 +4,40 @@
 #include <stdarg.h>
 #include <stddef.h>
 #define _BUFFER_SIZE_ 1024
+
+/**
+ * struct parameters - parameters struct
+ *
+ * @plus_flag: on if plus_flag specified
+ * @space_flag: on if space_flag specified
+ * @hashtag_flag: on if hashtag_flag specified
+ * @zero_flag: on if zero_flag specified
+ * @minus_flag: on if minus_flag specified
+ *
+ * Description: printf params
+ */
+typedef struct parameters
+{
+	u_int plus_flag;
+	u_int space_flag;
+	u_int hashtag_flag;
+	u_int zero_flag;
+	u_int minus_flag;
+} printf_parms;
 /**
  * struct GLOBALBUFFER - struct for printf Buffer
  * used across program
  *
  * @buffer: buffer in memory
  * @nextIdx: pointer to place of insertion new bytes
- *
+ * @params: like flags, width,...
  * Description: printf buffer struct
  */
 typedef struct GLOBALBUFFER
 {
 	char *buffer;
 	u_int nextIdx;/*could be used as length*/
+	printf_parms params;
 } GLOBALBUFFER;
 
 /**

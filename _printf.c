@@ -1,6 +1,47 @@
 #include "common_utils.h"
 #include <stdlib.h>
 /**
+ * getParams - adjust params of printf.
+ * @params: printf params
+ * @format: input string
+ * @idx: pointer to current pos in string.
+ *
+ * Return: void.
+ */
+void getParams(printf_parms *params, c_char *format, u_int *idx)
+{
+	u_int still = 1;
+
+	params->plus_flag = params->space_flag = params->zero_flag = 0;
+	params->minus_flag = params->hashtag_flag = 0;
+	while (still)
+	{
+		switch (format[*idx])
+		{
+			case '+':
+				still = params->plus_flag = 1;
+				break;
+			case ' ':
+				still = params->space_flag = 1;
+				break;
+			case '#':
+				still = params->hashtag_flag = 1;
+				break;
+			case '-':
+				still = params->minus_flag = 1;
+				break;
+			case '0':
+				still = params->zero_flag = 1;
+				break;
+			default:
+				still = 0;
+				break;
+		}
+		if (still)
+			(*idx)++;
+	}
+}
+/**
  * _printf - print the input formatted string.
  * @formattedString: input string.
  *
@@ -11,7 +52,7 @@ int _printf(c_char *formattedString, ...)
 	u_int idx = 0, charsPrinted = 0;
 	va_list args;
 	outputFromGet_handleFunc_to_exec o;
-	GLOBALBUFFER printBuffer = { NULL, 0 };
+	GLOBALBUFFER printBuffer;
 
 	va_start(args, formattedString);
 	printBuffer.buffer = malloc(sizeof(char) * _BUFFER_SIZE_);
@@ -32,6 +73,7 @@ int _printf(c_char *formattedString, ...)
 			}
 			else
 			{
+				getParams(&(printBuffer.params), formattedString, &idx);
 				o = get_handleFunc_to_exec(formattedString, idx + 1);
 				if (o.func != NULL)
 				{
