@@ -92,8 +92,7 @@ int _printf(c_char *format, ...)
 	{
 		if (format[idx] == '%')
 		{
-			if (format[idx + 1] == '\0' ||
-					(format[idx + 1] == ' ' && !format[idx + 2]))
+			if (format[idx + 1] == '\0' || (format[idx + 1] == ' ' && !format[idx + 2]))
 			{
 				print_buffer(&printBuffer), free(printBuffer.buffer), va_end(args);
 				return (-1);
@@ -103,12 +102,13 @@ int _printf(c_char *format, ...)
 				initialIdx = idx++, getParams(&(printBuffer.params), format, &idx);
 				o = get_handleFunc_to_exec(format, idx);
 				if (o.func != NULL)
-				{
 					chars += o.func(args, &printBuffer);
-					idx += o.idx; /*skip specifier*/
-				}
 				else
+				{
 					idx = initialIdx, add_to_buffer(format[idx], &printBuffer), chars++;
+					idx = printBuffer.params.h_modifier || printBuffer.params.l_modifier ?
+						idx + 1 : idx;
+				}
 			}
 		}
 		else
