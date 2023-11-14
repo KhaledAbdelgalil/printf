@@ -40,7 +40,7 @@ u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len);
+	return (len + 2);
 }
 
 /**
@@ -78,10 +78,10 @@ u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer)
 	}
 	idx = (int)len - 1;
 	add_to_buffer('0', printBuffer);
-	add_to_buffer('x', printBuffer);
+	add_to_buffer('X', printBuffer);
 	while (idx >= 0)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len);
+	return (len + 2);
 }
