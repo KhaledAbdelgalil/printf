@@ -23,6 +23,10 @@ u_int handle_long_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_oct(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_oct(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -54,9 +58,11 @@ outputFromGet_handleFunc_to_exec
 	{"c", handle_char}, {"s", handle_str}, {"%", handle_percentage},
 	{" %", handle_percentage}, {"d", handle_int}, {"i", handle_int},
 	{"li", handle_long_int}, {"ld", handle_long_int},
+	{"hx", handle_short_hexaSmall},
 	{"hi", handle_short_int}, {"hd", handle_short_int},
-	{"b", handle_binary}, {"x", handle_hexaSmall},
-	{"X", handle_hexaCapital}, {"o", handle_oct},
+	{"hX", handle_short_hexaCapital},
+	{"b", handle_binary}, {"x", handle_hexaSmall}, {"lx", handle_long_hexaSmall},
+	{"X", handle_hexaCapital}, {"o", handle_oct}, {"lX", handle_long_hexaCapital},
 	{"u", handle_uint}, {"lu", handle_long_uint}, {"S", handle_special_str},
 	{"p", handle_address}, {"+x", handle_hexaSmall}, {"hu", handle_short_uint},
 	{"+X", handle_hexaCapital}, {"+o", handle_oct}, {"ho", handle_short_oct},

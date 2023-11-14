@@ -23,4 +23,8 @@ u_int handle_short_int(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_oct(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 #endif
