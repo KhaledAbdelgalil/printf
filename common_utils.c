@@ -83,7 +83,8 @@ outputFromGet_handleFunc_to_exec
 	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},
 	{" +i", handle_plus_int}, {" +d", handle_plus_int},
 	{"+ i", handle_plus_int}, {"+ d", handle_plus_int}, {"l", handle_percentage},
-	{"h", handle_percentage}, {NULL, NULL} };
+	{"h", handle_percentage}, {"l ", handle_percentage},
+        {"h ", handle_percentage}, {NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 
