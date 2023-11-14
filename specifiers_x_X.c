@@ -11,7 +11,7 @@
 u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 {
 	u_int num;
-	u_char bits[128];
+	u_char bits[128], ones = 0;
 	int idx = 0;
 	u_int len = 0;
 	int hexDigit = 0, rem = 0;
@@ -34,11 +34,17 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 		num = num / 16;
 	}
 	idx = (int)len - 1;
+	if (printBuffer->params.hashtag_flag)
+	{
+		add_to_buffer('0', printBuffer);
+		add_to_buffer('x', printBuffer);
+		ones = 2;
+	}
 	while (idx >= 0)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len);
+	return (len + ones);
 }
 
 /**
@@ -52,7 +58,7 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 {
 	u_int num;
-	u_char bits[128];
+	u_char bits[128], ones = 0;
 	int idx = 0;
 	u_int len = 0;
 	int hexDigit = 0, rem = 0;
@@ -74,10 +80,16 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 		bits[len++] = hexDigit;
 		num = num / 16;
 	}
+	if (printBuffer->params.hashtag_flag)
+	{
+		add_to_buffer('0', printBuffer);
+		add_to_buffer('X', printBuffer);
+		ones = 2;
+	}
 	idx = (int)len - 1;
 	while (idx >= 0)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len);
+	return (len + ones);
 }
