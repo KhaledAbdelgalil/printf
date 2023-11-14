@@ -15,7 +15,7 @@
  * @minus_flag: on if minus_flag specified
  * @h_modifier: for short
  * @l_modifier: for long
- *
+ * @width: width field in printf
  * Description: printf params
  */
 typedef struct parameters
@@ -28,7 +28,7 @@ typedef struct parameters
 
 	u_int h_modifier;
 	u_int l_modifier;
-
+	u_int width;
 } printf_parms;
 /**
  * struct GLOBALBUFFER - struct for printf Buffer

@@ -1,6 +1,30 @@
 #include "common_utils.h"
 #include <stdlib.h>
+/**
+ * getWidth - adjust width in params of printf.
+ * @params: printf params
+ * @format: input string
+ * @idx: pointer to current pos in string.
+ * @args: args
+ * Return: void.
+ */
+void getWidth(printf_parms *params, c_char *format, u_int *idx, va_list args)
+{
+	u_int w = 0;
 
+	params->width = 0;
+	if (format[*idx] == '*')
+	{
+		w = va_arg(args, int);
+		(*idx)++;
+	}
+	else
+	{
+		while (format[*idx] >= '0' && format[*idx] <= '9')
+			w = w * 10 + (format[*idx] - '0'), (*idx)++;
+	}
+	params->width = w;
+}
 /**
  * getModifier - adjust modifiers in params of printf.
  * @params: printf params
@@ -32,10 +56,10 @@ void getModifier(printf_parms *params, c_char *format, u_int *idx)
  * @params: printf params
  * @format: input string
  * @idx: pointer to current pos in string.
- *
+ * @args: args
  * Return: void.
  */
-void getParams(printf_parms *params, c_char *format, u_int *idx)
+void getParams(printf_parms *params, c_char *format, u_int *idx, va_list args)
 {
 	u_int still = 1;
 
@@ -67,6 +91,7 @@ void getParams(printf_parms *params, c_char *format, u_int *idx)
 		if (still)
 			(*idx)++;
 	}
+	getWidth(params, format, idx, args);
 	getModifier(params, format, idx);
 }
 /**
@@ -99,7 +124,7 @@ int _printf(c_char *format, ...)
 			}
 			else
 			{
-				initialIdx = idx++, getParams(&(printBuffer.params), format, &idx);
+				initialIdx = idx++, getParams(&(printBuffer.params), format, &idx, args);
 				o = get_handleFunc_to_exec(format, idx);
 				if (o.func != NULL)
 					chars += o.func(args, &printBuffer);

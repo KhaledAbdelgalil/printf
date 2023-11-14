@@ -71,7 +71,7 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 	if (printBuffer->params.l_modifier)
 		num = (ul_int)va_arg(args, ul_int);
 	else if (printBuffer->params.h_modifier)
-                num = (us_int)va_arg(args, u_int);
+		num = (us_int)va_arg(args, u_int);
 	else
 		num = (u_int)va_arg(args, u_int);
 	if (num == 0)
