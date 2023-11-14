@@ -9,13 +9,13 @@
  */
 u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 {
-	int num;
-	u_int absNum;
+	l_int num;
+	ul_int absNum;
 	u_char is_negative = 0;
-	u_int powers = 1;
+	ul_int powers = 1;
 	u_int digits = 0;
 
-	num = va_arg(args, int);
+	num = va_arg(args,l_int);
 	if (num < 0)
 	{
 		num  = num * -1;
