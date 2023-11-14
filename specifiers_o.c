@@ -10,7 +10,7 @@
 u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 {
 	u_int num;
-	u_char bits[128];
+	u_char bits[128], one = 0;
 	int idx = 0;
 	u_int len = 0;
 
@@ -26,10 +26,12 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 		bits[len++] = num % 8 + 48;
 		num = num / 8;
 	}
+	if (printBuffer->params.hashtag_flag)
+		add_to_buffer('0', printBuffer), one = 1;
 	idx = (int)len - 1;
 	while (idx >= 0)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len);
+	return (len + one);
 }
