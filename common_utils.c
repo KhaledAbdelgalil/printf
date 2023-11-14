@@ -13,6 +13,10 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_special_str(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_address(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_plus_int(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_space_int(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_hexaCapital_hashtag(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_hexaSmall_hashtag(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_oct_hashtag(va_list args, GLOBALBUFFER *printBuffer);
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -50,6 +54,9 @@ outputFromGet_handleFunc_to_exec
 	{"+X", handle_hexaCapital}, {"+o", handle_oct},
 	{" X", handle_hexaCapital}, {" x", handle_hexaSmall},
 	{" o", handle_oct}, {"+i", handle_plus_int}, {"+d", handle_plus_int},
+	{" i", handle_space_int}, {" d", handle_space_int},
+	{"#x", handle_hexaSmall_hashtag}, {"#X", handle_hexaCapital_hashtag},
+	{"#d", handle_int}, {"#i", handle_int}, {"#o", handle_oct_hashtag},
 	{NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
