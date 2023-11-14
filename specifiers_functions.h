@@ -13,4 +13,5 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_special_str(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_address(va_list args, GLOBALBUFFER *printBuffer);
+u_int handle_plus_int(va_list args, GLOBALBUFFER *printBuffer);
 #endif
