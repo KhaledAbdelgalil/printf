@@ -15,7 +15,12 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 	u_int powers = 1;
 	u_int digits = 0;
 
-	num = (int)va_arg(args, int);
+	if (printBuffer->params.l_modifier)
+		num = va_arg(args, l_int);
+	else if (printBuffer->params.h_modifier)
+		num = (s_int)va_arg(args, int);
+	else
+		num = (int)va_arg(args, int);
 	if (num < 0)
 	{
 		num  = num * -1;
@@ -29,9 +34,7 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		else if (printBuffer->params.space_flag)
 			add_to_buffer(' ', printBuffer), one = 1;
 	}
-
 	absNum = num;
-
 	while (absNum > 9)
 	{
 		powers = powers * 10;

@@ -1,5 +1,32 @@
 #include "common_utils.h"
 #include <stdlib.h>
+
+/**
+ * getModifier - adjust modifiers in params of printf.
+ * @params: printf params
+ * @format: input string
+ * @idx: pointer to current pos in string.
+ *
+ * Return: void.
+ */
+void getModifier(printf_parms *params, c_char *format, u_int *idx)
+{
+	u_int still = 0; /*check for modifier*/
+
+	params->h_modifier = params->l_modifier = 0;
+	switch (format[*idx])
+	{
+		case 'h':
+			still = params->h_modifier = 1;
+			break;
+		case 'l':
+			still = params->l_modifier = 1;
+			break;
+	}
+	if (still)
+		(*idx)++;
+}
+
 /**
  * getParams - adjust params of printf.
  * @params: printf params
@@ -40,6 +67,7 @@ void getParams(printf_parms *params, c_char *format, u_int *idx)
 		if (still)
 			(*idx)++;
 	}
+	getModifier(params, format, idx);
 }
 /**
  * _printf - print the input formatted string.

@@ -13,6 +13,8 @@
  * @hashtag_flag: on if hashtag_flag specified
  * @zero_flag: on if zero_flag specified
  * @minus_flag: on if minus_flag specified
+ * @h_modifier: for short
+ * @l_modifier: for long
  *
  * Description: printf params
  */
@@ -23,6 +25,10 @@ typedef struct parameters
 	u_int hashtag_flag;
 	u_int zero_flag;
 	u_int minus_flag;
+
+	u_int h_modifier;
+	u_int l_modifier;
+
 } printf_parms;
 /**
  * struct GLOBALBUFFER - struct for printf Buffer
