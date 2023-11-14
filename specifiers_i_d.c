@@ -1,5 +1,25 @@
 #include "common_utils.h"
 #include <stdarg.h>
+#include <stdio.h>
+#include <string.h>
+/**
+ * getUsedWidth - get used width of number
+ * @p: buffer struct
+ * @num: num
+ *
+ * Return: used width
+ */
+u_int getUsedWidth(GLOBALBUFFER *p, l_int num)
+{
+	char str[128];
+	u_int usedWidth = 0;
+
+	snprintf(str, sizeof(str), "%ld", num);
+	usedWidth = strlen(str);
+	if (num >= 0 && p->params.plus_flag)
+		usedWidth++;
+	return (usedWidth);
+}
 /**
  * handle_int - Adds integer bytes to printf buffer
  * @args: input integer
@@ -10,10 +30,8 @@
 u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 {
 	l_int num;
-	ul_int absNum;
-	u_char one = 0;
-	ul_int powers = 1;
-	u_int digits = 0;
+	ul_int absNum, powers = 1;
+	u_int one = 0, digits = 0, usedWidth = 0, len = 0;
 
 	if (printBuffer->params.l_modifier)
 		num = va_arg(args, l_int);
@@ -21,6 +39,9 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		num = (s_int)va_arg(args, int);
 	else
 		num = (int)va_arg(args, int);
+	usedWidth = getUsedWidth(printBuffer, num);
+	while (usedWidth++ < printBuffer->params.width)
+		add_to_buffer(' ', printBuffer), len++;
 	if (num < 0)
 	{
 		num  = num * -1;
@@ -47,5 +68,5 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		powers = powers / 10;
 		digits++;
 	}
-	return (digits + one);
+	return (digits + one + len);
 }
