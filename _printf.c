@@ -25,7 +25,7 @@ void getParams(printf_parms *params, c_char *format, u_int *idx)
 				still = params->space_flag = 1;
 				break;
 			case '#':
-				still = params->hashtag_flag = 0;
+				still = params->hashtag_flag = 1;
 				break;
 			case '-':
 				still = params->minus_flag = 0;
