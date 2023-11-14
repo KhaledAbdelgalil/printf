@@ -45,8 +45,8 @@ outputFromGet_handleFunc_to_exec
 	get_handleFunc_to_exec(c_char *formattedString, int idx)
 {
 	SpecifierToFunc mapSpecifierToFuncPointer[] = {
-	{"c", handle_char}, {"s", handle_str},
-	{"%", handle_percentage}, {"d", handle_int}, {"i", handle_int},
+	{"c", handle_char}, {"s", handle_str}, {"%", handle_percentage},
+	{" %", handle_percentage}, {"d", handle_int}, {"i", handle_int},
 	{"b", handle_binary}, {"x", handle_hexaSmall},
 	{"X", handle_hexaCapital}, {"o", handle_oct},
 	{"u", handle_uint}, {"S", handle_special_str},
@@ -57,7 +57,9 @@ outputFromGet_handleFunc_to_exec
 	{" i", handle_space_int}, {" d", handle_space_int},
 	{"#x", handle_hexaSmall_hashtag}, {"#X", handle_hexaCapital_hashtag},
 	{"#d", handle_int}, {"#i", handle_int}, {"#o", handle_oct_hashtag},
-	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},{NULL, NULL} };
+	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},
+	{" +i", handle_plus_int}, {" +d", handle_plus_int},
+	{"+ i", handle_plus_int}, {"+ d", handle_plus_int}, {NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 
