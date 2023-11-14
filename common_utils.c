@@ -57,7 +57,7 @@ outputFromGet_handleFunc_to_exec
 	{" i", handle_space_int}, {" d", handle_space_int},
 	{"#x", handle_hexaSmall_hashtag}, {"#X", handle_hexaCapital_hashtag},
 	{"#d", handle_int}, {"#i", handle_int}, {"#o", handle_oct_hashtag},
-	{NULL, NULL} };
+	{"+u", handle_uint}, {"#u", handle_uint}, {" u", handle_uint},{NULL, NULL} };
 	int i = 0, j = 0, reset_idx = idx;
 	outputFromGet_handleFunc_to_exec output;
 

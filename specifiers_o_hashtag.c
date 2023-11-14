@@ -1,7 +1,8 @@
 #include "common_utils.h"
 #include <stdarg.h>
 /**
- * handle_oct_hashtag - Adds '0' + integer bytes as oct representation to printf buffer
+ * handle_oct_hashtag - Adds '0' +
+ * integer bytes as oct representation to printf buffer
  * @args: input integer
  * @printBuffer: struct for buffer that holds data
  *

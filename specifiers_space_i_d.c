@@ -1,7 +1,8 @@
 #include "common_utils.h"
 #include <stdarg.h>
 /**
- * handle_space_int - Adds sign(+(space instead) or -) , integer bytes to printf buffer
+ * handle_space_int - Adds sign(+(space instead) or -) ,
+ * integer bytes to printf buffer
  * @args: input integer
  * @printBuffer: struct for buffer that holds data
  *
