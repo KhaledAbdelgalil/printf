@@ -26,7 +26,8 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		if (printBuffer->params.plus_flag)
 			add_to_buffer('+', printBuffer), one = 1;
-
+		else if (printBuffer->params.space_flag)
+			add_to_buffer(' ', printBuffer), one = 1;
 	}
 
 	absNum = num;
