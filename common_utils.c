@@ -23,7 +23,7 @@ u_int handle_short_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
-
+u_int handle_rot(va_list args, GLOBALBUFFER *printBuffer);
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer
@@ -56,7 +56,7 @@ outputFromGet_handleFunc_to_exec
 	{" %", handle_percentage}, {"d", handle_int}, {"i", handle_int},
 	{"b", handle_binary}, {"x", handle_hexaSmall},
 	{"X", handle_hexaCapital}, {"o", handle_oct},
-	{"r", handle_rev_str},
+	{"r", handle_rev_str}, {"R", handle_rot},
 	{"u", handle_uint}, {"S", handle_special_str},
 	{"p", handle_address},
 	{"+X", handle_hexaCapital}, {"+o", handle_oct},
