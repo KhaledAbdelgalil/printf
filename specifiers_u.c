@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <string.h>
 /**
- * getUsedWidth - get used width of number
+ * getUsedWidth2 - get used width of number
  * @num: num
  *
  * Return: used width
@@ -13,7 +13,7 @@ u_int getUsedWidth2(ul_int num)
 	char str[128];
 	u_int usedWidth = 0;
 
-	snprintf(str, sizeof(str), "%ld", num);
+	snprintf(str, sizeof(str), "%lu", num);
 	usedWidth = strlen(str);
 	return (usedWidth);
 }
@@ -29,7 +29,7 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 	ul_int num;
 	ul_int absNum;
 	ul_int powers = 1;
-	u_int digits = 0, usedWidth = 0, len;
+	u_int digits = 0, usedWidth = 0, len = 0;
 
 	if (printBuffer->params.l_modifier)
 		num = (ul_int)va_arg(args, ul_int);
