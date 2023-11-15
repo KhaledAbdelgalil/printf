@@ -21,7 +21,7 @@ u_int handle_str(va_list args, GLOBALBUFFER *printBuffer)
 		tmpStr = nullStr;
 	}
 	outchars = len = usedWidth = strlen(tmpStr);
-	if (printBuffer->params.percision != UINT_MAX && 
+	if (printBuffer->params.percision != UINT_MAX &&
 			printBuffer->params.percision < len)
 		outchars = usedWidth = printBuffer->params.percision;
 
