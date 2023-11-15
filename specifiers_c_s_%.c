@@ -12,19 +12,22 @@ u_int handle_str(va_list args, GLOBALBUFFER *printBuffer)
 	char *tmpStr;
 	u_int i = 0;
 	char nullStr[] = "(null)";
-	u_int usedWidth = 0, lenPadding = 0, len = 0;
+	u_int outchars, usedWidth = 0, lenPadding = 0, len = 0;
 
 	tmpStr = va_arg(args, char *);
 	if (tmpStr == NULL)
 	{
 		tmpStr = nullStr;
 	}
-	len = usedWidth = strlen(tmpStr);
+	outchars = len = usedWidth = strlen(tmpStr);
+	if (printBuffer->params.percision < len)
+		outchars = usedWidth = printBuffer->params.percision;
+
 	while (usedWidth++ < printBuffer->params.width)
 		add_to_buffer(' ', printBuffer), lenPadding++;
-	for (; i < len; i++)
+	for (; i < outchars; i++)
 		add_to_buffer(tmpStr[i], printBuffer);
-	return (len + lenPadding);
+	return (outchars + lenPadding);
 }
 
 /**
