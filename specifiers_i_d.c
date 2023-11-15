@@ -52,9 +52,7 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		add_to_buffer(' ', printBuffer), lenPadding++;
 	if (num < 0)
 	{
-		num  = num * -1;
-		add_to_buffer('-', printBuffer);
-		one = 1;
+		num  = num * -1, add_to_buffer('-', printBuffer), one = 1;
 	}
 	else
 	{
@@ -67,16 +65,8 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		 add_to_buffer('0', printBuffer), i++;
 	absNum = num;
 	while (absNum > 9)
-	{
-		powers = powers * 10;
-		absNum = absNum / 10;
-	}
-
+		powers = powers * 10, absNum = absNum / 10;
 	while (powers)
-	{
-		add_to_buffer((num / powers) % 10 + 48, printBuffer);
-		powers = powers / 10;
-		digits++;
-	}
+		add_to_buffer((num / powers) % 10 + 48, printBuffer), powers = powers / 10, digits++;
 	return (digits + one + lenPadding + padding);
 }
