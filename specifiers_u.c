@@ -8,7 +8,7 @@
  *
  * Return: used width
  */
-u_int getUsedWidth(ul_int num)
+u_int getUsedWidth2(ul_int num)
 {
 	char str[128];
 	u_int usedWidth = 0;
@@ -38,7 +38,7 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 	else
 		num = (u_int)va_arg(args, u_int);
 	absNum = num;
-	usedWidth = getUsedWidth(num);
+	usedWidth = getUsedWidth2(num);
 	while (usedWidth++ < printBuffer->params.width)
 		add_to_buffer(' ', printBuffer), len++;
 	while (absNum > 9)
