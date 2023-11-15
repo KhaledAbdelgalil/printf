@@ -2,6 +2,7 @@
 #include <stdarg.h>
 #include <stdio.h>
 #include <string.h>
+#include <limits.h>
 /**
  * getUsedWidth2 - get used width of number
  * @num: num
@@ -29,7 +30,8 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 	ul_int num;
 	ul_int absNum;
 	ul_int powers = 1;
-	u_int digits = 0, usedWidth = 0, len = 0;
+	u_int digits = 0, usedWidth = 0, paddingLen = 0, lenDigits = 0;
+	u_int padding = 0, i = 0;
 
 	if (printBuffer->params.l_modifier)
 		num = (ul_int)va_arg(args, ul_int);
@@ -38,20 +40,24 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 	else
 		num = (u_int)va_arg(args, u_int);
 	absNum = num;
-	usedWidth = getUsedWidth2(num);
+	lenDigits = usedWidth = getUsedWidth2(num);
+	if (printBuffer->params.percision != UINT_MAX
+			&& printBuffer->params.percision > lenDigits)
+		padding = printBuffer->params.percision - lenDigits;
 	while (usedWidth++ < printBuffer->params.width)
-		add_to_buffer(' ', printBuffer), len++;
+		add_to_buffer(' ', printBuffer), paddingLen++;
 	while (absNum > 9)
 	{
 		powers = powers * 10;
 		absNum = absNum / 10;
 	}
-
+	while (i < padding)
+		add_to_buffer('0', printBuffer), i++;
 	while (powers)
 	{
 		add_to_buffer((num / powers) % 10 + 48, printBuffer);
 		powers = powers / 10;
 		digits++;
 	}
-	return (digits + len);
+	return (padding + digits + paddingLen);
 }
