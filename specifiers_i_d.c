@@ -45,15 +45,13 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 		num = (int)va_arg(args, int);
 	usedWidth = getUsedWidth(printBuffer, num, 1);
 	lenDigits = getUsedWidth(printBuffer, num, 0);
-	if (printBuffer->params.percision != UINT_MAX && printBuffer->params.percision > lenDigits)
+	if (printBuffer->params.percision != UINT_MAX
+			&& printBuffer->params.percision > lenDigits)
 		padding = printBuffer->params.percision - lenDigits;
-
 	while (usedWidth++ < printBuffer->params.width)
 		add_to_buffer(' ', printBuffer), lenPadding++;
 	if (num < 0)
-	{
 		num  = num * -1, add_to_buffer('-', printBuffer), one = 1;
-	}
 	else
 	{
 		if (printBuffer->params.plus_flag)
@@ -62,11 +60,14 @@ u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
 			add_to_buffer(' ', printBuffer), one = 1;
 	}
 	while (i < padding)
-		 add_to_buffer('0', printBuffer), i++;
+		add_to_buffer('0', printBuffer), i++;
 	absNum = num;
 	while (absNum > 9)
 		powers = powers * 10, absNum = absNum / 10;
 	while (powers)
-		add_to_buffer((num / powers) % 10 + 48, printBuffer), powers = powers / 10, digits++;
+	{
+		add_to_buffer((num / powers) % 10 + 48, printBuffer);
+		powers = powers / 10, digits++;
+	}
 	return (digits + one + lenPadding + padding);
 }
