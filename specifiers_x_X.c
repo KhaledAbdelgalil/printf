@@ -1,5 +1,21 @@
 #include "common_utils.h"
 #include <stdarg.h>
+
+
+/**
+ * handle_zero - handleZeroCase in hexa
+ * @printBuffer: printf Buffer
+ * Return: number of added bytes
+ */
+u_int handle_zero(GLOBALBUFFER *printBuffer)
+{
+	u_int usedWidth = 1, lenPadding = 0;
+
+	while (usedWidth++ < printBuffer->params.width)
+		add_to_buffer(' ', printBuffer), lenPadding++;
+	add_to_buffer('0', printBuffer);
+	return (1 + lenPadding);
+}
 /**
  * handle_hexaSmall - Adds integer bytes as hexaSmall
  * representation to printf buffer
@@ -13,7 +29,7 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 	ul_int num;
 	u_char bits[128], ones = 0;
 	int idx = 0;
-	u_int len = 0;
+	u_int len = 0, usedWidth = 0, lenPadding = 0;
 	int hexDigit = 0, rem = 0;
 
 	if (printBuffer->params.l_modifier)
@@ -23,10 +39,7 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 	else
 		num = (u_int)va_arg(args, u_int);
 	if (num == 0)
-	{
-		add_to_buffer('0', printBuffer);
-		return (1);
-	}
+		return (handle_zero(printBuffer));
 
 	while (num)
 	{
@@ -39,6 +52,9 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 		num = num / 16;
 	}
 	idx = (int)len - 1;
+	usedWidth = len + 2 * (printBuffer->params.hashtag_flag);
+	while (usedWidth++ < printBuffer->params.width)
+		add_to_buffer(' ', printBuffer), lenPadding++;
 	if (printBuffer->params.hashtag_flag)
 	{
 		add_to_buffer('0', printBuffer);
@@ -49,7 +65,7 @@ u_int handle_hexaSmall(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len + ones);
+	return (lenPadding + len + ones);
 }
 
 /**
@@ -65,7 +81,7 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 	ul_int num;
 	u_char bits[128], ones = 0;
 	int idx = 0;
-	u_int len = 0;
+	u_int len = 0, lenPadding = 0, usedWidth = 0;
 	int hexDigit = 0, rem = 0;
 
 	if (printBuffer->params.l_modifier)
@@ -75,10 +91,7 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 	else
 		num = (u_int)va_arg(args, u_int);
 	if (num == 0)
-	{
-		add_to_buffer('0', printBuffer);
-		return (1);
-	}
+		return (handle_zero(printBuffer));
 
 	while (num)
 	{
@@ -90,6 +103,9 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 		bits[len++] = hexDigit;
 		num = num / 16;
 	}
+	usedWidth = len + 2 * (printBuffer->params.hashtag_flag);
+	while (usedWidth++ < printBuffer->params.width)
+		add_to_buffer(' ', printBuffer), lenPadding++;
 	if (printBuffer->params.hashtag_flag)
 	{
 		add_to_buffer('0', printBuffer);
@@ -101,5 +117,5 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len + ones);
+	return (lenPadding + len + ones);
 }

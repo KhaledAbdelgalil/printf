@@ -12,7 +12,7 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 	ul_int num;
 	u_char bits[128], one = 0;
 	int idx = 0;
-	u_int len = 0;
+	u_int len = 0, usedWidth = 0, lenPadding = 0;
 
 	if (printBuffer->params.l_modifier)
 		num = (ul_int)va_arg(args, ul_int);
@@ -22,8 +22,11 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 		num = (u_int)va_arg(args, u_int);
 	if (num == 0)
 	{
+		usedWidth = 1;
+		while (usedWidth++ < printBuffer->params.width)
+			add_to_buffer(' ', printBuffer), lenPadding++;
 		add_to_buffer('0', printBuffer);
-		return (1);
+		return (1 + lenPadding);
 	}
 
 	while (num)
@@ -31,6 +34,9 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 		bits[len++] = num % 8 + 48;
 		num = num / 8;
 	}
+	usedWidth = len + printBuffer->params.hashtag_flag;
+	while (usedWidth++ < printBuffer->params.width)
+		add_to_buffer(' ', printBuffer), lenPadding++;
 	if (printBuffer->params.hashtag_flag)
 		add_to_buffer('0', printBuffer), one = 1;
 	idx = (int)len - 1;
@@ -38,5 +44,5 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len + one);
+	return (lenPadding + len + one);
 }
