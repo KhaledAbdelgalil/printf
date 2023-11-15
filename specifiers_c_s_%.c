@@ -18,14 +18,6 @@ u_int handle_str(va_list args, GLOBALBUFFER *printBuffer)
 	if (tmpStr == NULL)
 	{
 		tmpStr = nullStr;
-		/*
-		usedWidth = 6;
-		while (usedWidth++ < printBuffer->params.width)
-			add_to_buffer(' ', printBuffer), lenPadding++;
-		for (; i <= 5; i++)
-			add_to_buffer(nullStr[i], printBuffer);
-		return (6 + lenPadding);
-		*/
 	}
 	len = usedWidth = strlen(tmpStr);
 	while (usedWidth++ < printBuffer->params.width)
