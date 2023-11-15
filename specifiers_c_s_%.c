@@ -1,6 +1,7 @@
 #include "common_utils.h"
 #include <stdarg.h>
 #include <string.h>
+#include <limits.h>
 /**
  * handle_str - Adds string bytes to printf buffer
  * @args: input string
@@ -20,7 +21,8 @@ u_int handle_str(va_list args, GLOBALBUFFER *printBuffer)
 		tmpStr = nullStr;
 	}
 	outchars = len = usedWidth = strlen(tmpStr);
-	if (printBuffer->params.percision < len)
+	if (printBuffer->params.percision != UINT_MAX && 
+			printBuffer->params.percision < len)
 		outchars = usedWidth = printBuffer->params.percision;
 
 	while (usedWidth++ < printBuffer->params.width)
