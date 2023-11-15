@@ -12,24 +12,27 @@ u_int handle_str(va_list args, GLOBALBUFFER *printBuffer)
 	char *tmpStr;
 	u_int i = 0;
 	char nullStr[] = "(null)";
-	u_int usedWidth = 0, len = 0;
+	u_int usedWidth = 0, lenPadding = 0, len = 0;
 
 	tmpStr = va_arg(args, char *);
 	if (tmpStr == NULL)
 	{
+		tmpStr = nullStr;
+		/*
 		usedWidth = 6;
 		while (usedWidth++ < printBuffer->params.width)
-			add_to_buffer(' ', printBuffer), len++;
+			add_to_buffer(' ', printBuffer), lenPadding++;
 		for (; i <= 5; i++)
 			add_to_buffer(nullStr[i], printBuffer);
-		return (6 + len);
+		return (6 + lenPadding);
+		*/
 	}
-	usedWidth = strlen(tmpStr);
+	len = usedWidth = strlen(tmpStr);
 	while (usedWidth++ < printBuffer->params.width)
-		add_to_buffer(' ', printBuffer), len++;
-	for (; tmpStr[i]; i++)
+		add_to_buffer(' ', printBuffer), lenPadding++;
+	for (; i < len; i++)
 		add_to_buffer(tmpStr[i], printBuffer);
-	return (i + len);
+	return (len + lenPadding);
 }
 
 /**

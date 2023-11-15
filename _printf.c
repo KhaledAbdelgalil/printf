@@ -1,5 +1,36 @@
 #include "common_utils.h"
 #include <stdlib.h>
+#include <limits.h>
+
+/**
+ * getPer - adjust percision in params of printf.
+ * @params: printf params
+ * @format: input string
+ * @idx: pointer to current pos in string.
+ * @args: args
+ * Return: void.
+ */
+void getPer(printf_parms *params, c_char *format, u_int *idx, va_list args)
+{
+	int per = 0;
+
+	params->percision = UINT_MAX;
+	if (format[*idx] != '.')
+		return;
+	(*idx)++;
+	if (format[*idx] == '*')
+	{
+		per = va_arg(args, int);
+		(*idx)++;
+	}
+	else
+	{
+		while (format[*idx] >= '0' && format[*idx] <= '9')
+			per = per * 10 + (format[*idx] - '0'), (*idx)++;
+	}
+	params->percision = per;
+
+}
 /**
  * getWidth - adjust width in params of printf.
  * @params: printf params
@@ -92,6 +123,7 @@ void getParams(printf_parms *params, c_char *format, u_int *idx, va_list args)
 			(*idx)++;
 	}
 	getWidth(params, format, idx, args);
+	getPer(params, format, idx, args);
 	getModifier(params, format, idx);
 }
 /**
