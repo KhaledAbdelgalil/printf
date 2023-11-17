@@ -1,6 +1,7 @@
 #include "common_utils.h"
 #include <stdarg.h>
 #include <stdint.h>
+#include <limits.h>
 /**
  * handle_address - Adds address bytes as hexaSmall
  * representation to printf buffer
@@ -15,7 +16,7 @@ u_int handle_address(va_list args, GLOBALBUFFER *printBuffer)
 	void *address;
 	u_char bits[128];
 	int idx = 0;
-	u_int len = 0;
+	u_int len = 0, padding = 0, lenDigits = 0, i = 0;
 	int hexDigit = 0, rem = 0;
 
 	address = va_arg(args, void *);
@@ -39,10 +40,16 @@ u_int handle_address(va_list args, GLOBALBUFFER *printBuffer)
 	}
 	add_to_buffer('0', printBuffer);
 	add_to_buffer('x', printBuffer);
+	lenDigits = len;
+	if (printBuffer->params.percision != UINT_MAX
+			&& printBuffer->params.percision > lenDigits)
+		padding = printBuffer->params.percision - lenDigits;
+	while (i < padding)
+		add_to_buffer('0', printBuffer), i++;
 	idx = (int)len - 1;
 	while (idx >= 0)
 	{
 		add_to_buffer(bits[idx--], printBuffer);
 	}
-	return (len + 2);
+	return (padding + len + 2);
 }
