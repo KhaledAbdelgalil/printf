@@ -44,7 +44,7 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 	if (printBuffer->params.percision != UINT_MAX
 			&& printBuffer->params.percision > lenDigits)
 		padding = printBuffer->params.percision - lenDigits;
-	while (usedWidth++ < printBuffer->params.width)
+	while (padding + usedWidth++ < printBuffer->params.width)
 		add_to_buffer(' ', printBuffer), paddingLen++;
 	while (absNum > 9)
 	{
