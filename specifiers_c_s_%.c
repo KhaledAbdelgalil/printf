@@ -3,6 +3,34 @@
 #include <string.h>
 #include <limits.h>
 /**
+ * handle_str_minus - Adds string bytes to printf buffer
+ * @args: input string
+ * @printBuffer: struct for buffer that holds data
+ * Return: number of added bytes
+ */
+u_int handle_str_minus(va_list args, GLOBALBUFFER *printBuffer)
+{
+	char *tmpStr;
+	u_int i = 0;
+	char nullStr[] = "(null)";
+	u_int outchars, usedWidth = 0, lenPadding = 0, len = 0;
+
+	tmpStr = va_arg(args, char *);
+	if (tmpStr == NULL)
+	{
+		tmpStr = nullStr;
+	}
+	outchars = len = usedWidth = strlen(tmpStr);
+	if (printBuffer->params.percision != UINT_MAX &&
+			printBuffer->params.percision < len)
+		outchars = usedWidth = printBuffer->params.percision;
+	for (; i < outchars; i++)
+		add_to_buffer(tmpStr[i], printBuffer);
+	while (i++ < printBuffer->params.width)
+		add_to_buffer(' ', printBuffer), lenPadding++;
+	return (outchars + lenPadding);
+}
+/**
  * handle_str - Adds string bytes to printf buffer
  * @args: input string
  * @printBuffer: struct for buffer that holds data
@@ -15,6 +43,8 @@ u_int handle_str(va_list args, GLOBALBUFFER *printBuffer)
 	char nullStr[] = "(null)";
 	u_int outchars, usedWidth = 0, lenPadding = 0, len = 0;
 
+	if (printBuffer->params.minus_flag)
+		return (handle_str_minus(args, printBuffer));
 	tmpStr = va_arg(args, char *);
 	if (tmpStr == NULL)
 	{
