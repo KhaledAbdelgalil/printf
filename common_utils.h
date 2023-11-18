@@ -1,6 +1,7 @@
 #ifndef _COMMON_UTILS_H_
 #define _COMMON_UTILS_H_
 #include "complex_types.h"
+u_int handle_from_to(c_char *f, u_int, u_int, u_int, GLOBALBUFFER *p);
 void add_to_buffer(char c, GLOBALBUFFER *printBuffer);
 u_int print_buffer(GLOBALBUFFER *printBuffer);
 

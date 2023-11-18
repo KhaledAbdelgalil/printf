@@ -24,6 +24,29 @@ u_int handle_short_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_hexaCapital(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_long_hexaSmall(va_list args, GLOBALBUFFER *printBuffer);
 u_int handle_rot(va_list args, GLOBALBUFFER *printBuffer);
+
+/**
+ * handle_from_to - writes the character c to the buffer
+ * @f: input string
+ * @s: idx to start printing from
+ * @e: idx to stop at
+ * @expt: don't print that idx
+ * @b: struct for buffer that holds data
+ * Return: number of chars added
+ */
+u_int handle_from_to(c_char *f, u_int s, u_int e, u_int expt, GLOBALBUFFER *b)
+{
+	u_int printed = 0;
+
+	while (s <= e)
+	{
+		if (s != expt)
+			printed++, add_to_buffer(f[s], b);
+		s++;
+	}
+	return (printed);
+}
+
 /**
  * add_to_buffer - writes the character c to the buffer
  * @c: input char to be written to the buffer

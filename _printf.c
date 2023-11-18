@@ -134,7 +134,7 @@ void getParams(printf_parms *params, c_char *format, u_int *idx, va_list args)
  */
 int _printf(c_char *format, ...)
 {
-	u_int idx = 0, chars = 0, initialIdx = 0;
+	u_int idx = 0, initialIdx = 0, chars = 0, cond = 0;
 	va_list args;
 	outputFromGet_handleFunc_to_exec o;
 	GLOBALBUFFER printBuffer;
@@ -162,9 +162,9 @@ int _printf(c_char *format, ...)
 					chars += o.func(args, &printBuffer);
 				else
 				{
-					idx = initialIdx, add_to_buffer(format[idx], &printBuffer), chars++;
-					idx = printBuffer.params.h_modifier || printBuffer.params.l_modifier ?
-						idx + 1 : idx;
+					cond = printBuffer.params.l_modifier || printBuffer.params.h_modifier;
+					chars += handle_from_to(format, initialIdx, idx,
+							cond ? idx - 1 : 0, &printBuffer);
 				}
 			}
 		}
