@@ -59,8 +59,7 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 
 	while (num)
 	{
-		bits[len++] = num % 8 + 48;
-		num = num / 8;
+		bits[len++] = num % 8 + 48, num = num / 8;
 	}
 	lenDigits = len;
 	usedWidth = len + printBuffer->params.hashtag_flag;

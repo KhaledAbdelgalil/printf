@@ -106,7 +106,6 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 		num = (u_int)va_arg(args, u_int);
 	if (num == 0)
 		return (handle_zero(printBuffer));
-
 	while (num)
 	{
 		rem = num % 16;
@@ -114,8 +113,7 @@ u_int handle_hexaCapital(va_list args, GLOBALBUFFER *printBuffer)
 			hexDigit = rem + 48;
 		else
 			hexDigit = rem - 10 + 'A';
-		bits[len++] = hexDigit;
-		num = num / 16;
+		bits[len++] = hexDigit, num = num / 16;
 	}
 	lenDigits = len;
 	usedWidth = len + 2 * (printBuffer->params.hashtag_flag);
