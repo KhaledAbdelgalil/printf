@@ -113,7 +113,7 @@ void getParams(printf_parms *params, c_char *format, u_int *idx, va_list args)
 				still = params->minus_flag = 0;
 				break;
 			case '0':
-				still = params->zero_flag = 0;
+				still = params->zero_flag = 1;
 				break;
 			default:
 				still = 0;
