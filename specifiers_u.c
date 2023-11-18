@@ -4,6 +4,20 @@
 #include <string.h>
 #include <limits.h>
 /**
+ * handle_not_print_u - handle not printing any chars.
+ * @buffer: print buffer
+ * Return: number of bytes
+ *
+ */
+u_int handle_not_print_u(GLOBALBUFFER *buffer)
+{
+	u_int count = buffer->params.width, i = 0;
+
+	while (i < count)
+		add_to_buffer(' ', buffer), i++;
+	return (count);
+}
+/**
  * getUsedWidth2 - get used width of number
  * @num: num
  *
@@ -39,6 +53,8 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 		num = (us_int)va_arg(args, u_int);
 	else
 		num = (u_int)va_arg(args, u_int);
+	if (num == 0 && printBuffer->params.percision == 0)
+		return (handle_not_print_u(printBuffer));
 	absNum = num;
 	lenDigits = usedWidth = getUsedWidth2(num);
 	if (printBuffer->params.percision != UINT_MAX
