@@ -11,6 +11,13 @@ u_int handle_zero_o(GLOBALBUFFER *printBuffer)
 	u_int lenDigits = 1, usedWidth = 1, lenPadding = 0;
 	u_int padding = 0, i = 0;
 
+	if (printBuffer->params.percision == 0)
+	{
+		usedWidth = 0;
+		while (usedWidth++ < printBuffer->params.width)
+			add_to_buffer(' ', printBuffer), lenPadding++;
+		return (lenPadding);
+	}
 	if (printBuffer->params.percision != UINT_MAX
 			&& printBuffer->params.percision > lenDigits)
 		padding = printBuffer->params.percision - lenDigits;
