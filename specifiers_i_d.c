@@ -41,49 +41,49 @@ u_int getUsedWidth(GLOBALBUFFER *p, l_int num, int wOrL)
 /**
  * handle_int - Adds integer bytes to printf buffer
  * @args: input integer
- * @printBuffer: struct for buffer that holds data
+ * @pB: struct for buffer that holds data
  *
  * Return: number of added bytes
  */
-u_int handle_int(va_list args, GLOBALBUFFER *printBuffer)
+u_int handle_int(va_list args, GLOBALBUFFER *pB)
 {
 	l_int num;
 	ul_int absNum, powers = 1, padding = 0, i = 0, notprint = 0;
 	u_int one = 0, digits = 0, usedWidth = 0, lenPadding = 0, lenDigits = 0;
+	char pad = pB->params.zero_flag && !pB->params.minus_flag ? '0' : ' ';
 
-	if (printBuffer->params.l_modifier)
+	if (pB->params.l_modifier)
 		num = va_arg(args, l_int);
-	else if (printBuffer->params.h_modifier)
+	else if (pB->params.h_modifier)
 		num = (s_int)va_arg(args, int);
 	else
 		num = (int)va_arg(args, int);
-	usedWidth = getUsedWidth(printBuffer, num, 1);
-	lenDigits = getUsedWidth(printBuffer, num, 0);
-	notprint = (printBuffer->params.percision == 0 && num == 0);
+	usedWidth = getUsedWidth(pB, num, 1);
+	lenDigits = getUsedWidth(pB, num, 0);
+	notprint = (pB->params.percision == 0 && num == 0);
 	if (notprint)
-		return (handle_not_print(printBuffer));
-	if (printBuffer->params.percision != UINT_MAX
-			&& printBuffer->params.percision > lenDigits)
-		padding = printBuffer->params.percision - lenDigits;
-	while (padding + usedWidth++ < printBuffer->params.width)
-		add_to_buffer(' ', printBuffer), lenPadding++;
+		return (handle_not_print(pB));
+	if (pB->params.percision != UINT_MAX && pB->params.percision > lenDigits)
+		padding = pB->params.percision - lenDigits;
+	while (padding + usedWidth++ < pB->params.width)
+		add_to_buffer(pad, pB), lenPadding++;
 	if (num < 0)
-		num  = num * -1, add_to_buffer('-', printBuffer), one = 1;
+		num  = num * -1, add_to_buffer('-', pB), one = 1;
 	else
 	{
-		if (printBuffer->params.plus_flag)
-			add_to_buffer('+', printBuffer), one = 1;
-		else if (printBuffer->params.space_flag)
-			add_to_buffer(' ', printBuffer), one = 1;
+		if (pB->params.plus_flag)
+			add_to_buffer('+', pB), one = 1;
+		else if (pB->params.space_flag)
+			add_to_buffer(' ', pB), one = 1;
 	}
-	while (i < padding)
-		add_to_buffer('0', printBuffer), i++;
 	absNum = num;
+	while (i < padding)
+		add_to_buffer('0', pB), i++;
 	while (absNum > 9)
 		powers = powers * 10, absNum = absNum / 10;
 	while (powers)
 	{
-		add_to_buffer((num / powers) % 10 + 48, printBuffer);
+		add_to_buffer((num / powers) % 10 + 48, pB);
 		powers = powers / 10, digits++;
 	}
 	return (digits + one + lenPadding + padding);

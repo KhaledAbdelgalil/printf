@@ -46,6 +46,8 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 	ul_int powers = 1;
 	u_int digits = 0, usedWidth = 0, paddingLen = 0, lenDigits = 0;
 	u_int padding = 0, i = 0;
+	char pad = printBuffer->params.zero_flag
+		&& !printBuffer->params.minus_flag ? '0' : ' ';
 
 	if (printBuffer->params.l_modifier)
 		num = (ul_int)va_arg(args, ul_int);
@@ -61,7 +63,7 @@ u_int handle_uint(va_list args, GLOBALBUFFER *printBuffer)
 			&& printBuffer->params.percision > lenDigits)
 		padding = printBuffer->params.percision - lenDigits;
 	while (padding + usedWidth++ < printBuffer->params.width)
-		add_to_buffer(' ', printBuffer), paddingLen++;
+		add_to_buffer(pad, printBuffer), paddingLen++;
 	while (absNum > 9)
 	{
 		powers = powers * 10;

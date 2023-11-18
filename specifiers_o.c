@@ -43,6 +43,8 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 	int idx = 0;
 	u_int len = 0, usedWidth = 0, lenPadding = 0;
 	u_int lenDigits = 0, padding  = 0, i = 0;
+	char pad = printBuffer->params.zero_flag
+		&& !printBuffer->params.minus_flag ? '0' : ' ';
 
 	if (printBuffer->params.l_modifier)
 		num = (ul_int)va_arg(args, ul_int);
@@ -66,7 +68,7 @@ u_int handle_oct(va_list args, GLOBALBUFFER *printBuffer)
 			&& printBuffer->params.percision > lenDigits)
 		padding = printBuffer->params.percision - lenDigits;
 	while (padding + usedWidth++ < printBuffer->params.width)
-		add_to_buffer(' ', printBuffer), lenPadding++;
+		add_to_buffer(pad, printBuffer), lenPadding++;
 	if (printBuffer->params.hashtag_flag)
 		add_to_buffer('0', printBuffer), one = 1;
 	while (i < padding)
